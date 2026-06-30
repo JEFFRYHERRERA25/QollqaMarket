@@ -116,7 +116,8 @@
     </div>
     
     <script>
-        var contextPath = window.location.pathname.split('/')[1] || '';
+        //var contextPath = window.location.pathname.split('/')[1] || '';
+        var contextPath = '<%= request.getContextPath() %>';
         
         // Establecer fecha actual si es nuevo movimiento
         <% if (!esEdicion) { %>
@@ -149,7 +150,7 @@
             }
             
             timeoutId = setTimeout(function() {
-                fetch('/' + contextPath + '/productos?action=listar')
+                fetch(contextPath + '/productos?action=listar')
                     .then(function(response) {
                         return response.json();
                     })
@@ -258,7 +259,7 @@
             if (window.parent && window.parent.document.getElementById('statsGrid')) {
                 window.parent.location.reload();
             }
-            fetch('/' + contextPath + '/reportes?action=dashboard')
+            fetch(contextPath + '/reportes?action=dashboard')
                 .then(function(response) {
                     return response.json();
                 })
