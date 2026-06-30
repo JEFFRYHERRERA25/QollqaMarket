@@ -45,11 +45,11 @@
     </div>
     
     <script>
-        var contextPath = window.location.pathname.split('/')[1] || '';
+        var contextPath = '<%= request.getContextPath() %>';
         
         function cargarDashboard() {
             // Cargar estadísticas desde reportes
-            fetch('/' + contextPath + '/reportes?action=dashboard')
+            fetch(contextPath + '/reportes?action=dashboard')
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error('HTTP error ' + response.status);
@@ -73,7 +73,7 @@
                 });
             
             // Cargar alertas de stock
-            fetch('/' + contextPath + '/productos?action=alertas')
+            fetch(contextPath + '/productos?action=alertas')
                 .then(function(response) {
                     return response.json();
                 })
